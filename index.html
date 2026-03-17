@@ -1,12 +1,11 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rate My Food</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
+/* Body with background image */
 body {
     font-family: Arial, sans-serif;
     background-image: url("https://i.ytimg.com/vi/0L38Z9hIi5s/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CL");
@@ -18,78 +17,87 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-}        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    h1 {
-        margin-top: 20px;
-        color: #d32f2f;
-        text-align: center;
-    }
-    .rating-section {
-        margin: 15px 0;
-        width: 90%;
-        max-width: 400px;
-        background: #fff;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    .rating-section h3 {
-        margin-bottom: 10px;
-    }
-    .stars {
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: flex-end;
-    }
-    .stars input {
-        display: none;
-    }
-    .stars label {
-        font-size: 30px;
-        color: #ccc;
-        cursor: pointer;
-        transition: color 0.2s;
-    }
-    .stars input:checked ~ label,
-    .stars label:hover,
-    .stars label:hover ~ label {
-        color: #ffc107;
-    }
-    textarea {
-        width: 100%;
-        resize: vertical;
-        min-height: 60px;
-        margin-top: 10px;
-        padding: 8px;
-        font-size: 14px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-    }
-    button {
-        margin: 20px;
-        padding: 12px 25px;
-        font-size: 16px;
-        border: none;
-        border-radius: 8px;
-        background-color: #d32f2f;
-        color: white;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #b71c1c;
-    }
-    .thankyou {
-        display: none;
-        margin-top: 20px;
-        font-size: 18px;
-        color: green;
-        text-align: center;
-    }
+}
+
+/* Title */
+h1 {
+    margin-top: 20px;
+    color: white;  /* changed from red to white */
+    text-align: center;
+}
+
+/* Rating sections */
+.rating-section {
+    margin: 15px 0;
+    width: 90%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.85); /* semi-transparent */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.rating-section h3 {
+    margin-bottom: 10px;
+    color: black;  /* headings inside sections are black */
+}
+
+/* Star rating */
+.stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+.stars input {
+    display: none;
+}
+.stars label {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.stars input:checked ~ label,
+.stars label:hover,
+.stars label:hover ~ label {
+    color: #ffc107;  /* stars stay yellow when selected/hovered */
+}
+
+/* Comments textarea */
+textarea {
+    width: 100%;
+    resize: vertical;
+    min-height: 60px;
+    margin-top: 10px;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Submit button */
+button {
+    margin: 20px;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #444;  /* neutral dark color instead of red */
+    color: white;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #222;  /* darker on hover */
+}
+
+/* Thank you message */
+.thankyou {
+    display: none;
+    margin-top: 20px;
+    font-size: 18px;
+    color: green;
+    text-align: center;
+}
 </style>
 </head>
 <body>
@@ -170,15 +178,12 @@ function submitRatings() {
         return;
     }
 
-    // Save to localStorage (for testing/demo purposes)
     let existing = JSON.parse(localStorage.getItem("ratings")) || [];
     existing.push(data);
     localStorage.setItem("ratings", JSON.stringify(existing));
 
-    // Show thank you message
     document.querySelector(".thankyou").style.display = "block";
 
-    // Clear selections
     categories.forEach(cat => {
         const checked = document.querySelector(`input[name="${cat}"]:checked`);
         if (checked) checked.checked = false;
