@@ -43,14 +43,13 @@ h1 {
     justify-content: center;
 }
 
-.stars input {
-    display: none;
-}
+.stars input { display: none; }
 
 .stars label {
     font-size: 30px;
     color: #ccc;
     cursor: pointer;
+    transition: color 0.2s;
 }
 
 .stars input:checked ~ label,
@@ -79,9 +78,9 @@ button {
     cursor: pointer;
 }
 
-.hidden {
-    display: none;
-}
+.hidden { display: none; }
+
+textarea { width: 100%; height: 80px; margin-top: 10px; padding: 8px; border-radius: 5px; border: 1px solid #ccc; }
 </style>
 </head>
 
@@ -95,11 +94,11 @@ button {
 <div class="box" id="taste">
 <h3>Taste</h3>
 <div class="stars">
-<input type="radio" name="taste" value="5"><label>★</label>
-<input type="radio" name="taste" value="4"><label>★</label>
-<input type="radio" name="taste" value="3"><label>★</label>
-<input type="radio" name="taste" value="2"><label>★</label>
-<input type="radio" name="taste" value="1"><label>★</label>
+<input type="radio" name="taste" id="taste5" value="5"><label for="taste5">★</label>
+<input type="radio" name="taste" id="taste4" value="4"><label for="taste4">★</label>
+<input type="radio" name="taste" id="taste3" value="3"><label for="taste3">★</label>
+<input type="radio" name="taste" id="taste2" value="2"><label for="taste2">★</label>
+<input type="radio" name="taste" id="taste1" value="1"><label for="taste1">★</label>
 </div>
 <button onclick="next('packaging')">Next</button>
 </div>
@@ -109,11 +108,11 @@ button {
 <button class="back-btn" onclick="back('taste')">&#8592;</button>
 <h3>Packaging</h3>
 <div class="stars">
-<input type="radio" name="packaging" value="5"><label>★</label>
-<input type="radio" name="packaging" value="4"><label>★</label>
-<input type="radio" name="packaging" value="3"><label>★</label>
-<input type="radio" name="packaging" value="2"><label>★</label>
-<input type="radio" name="packaging" value="1"><label>★</label>
+<input type="radio" name="packaging" id="packaging5" value="5"><label for="packaging5">★</label>
+<input type="radio" name="packaging" id="packaging4" value="4"><label for="packaging4">★</label>
+<input type="radio" name="packaging" id="packaging3" value="3"><label for="packaging3">★</label>
+<input type="radio" name="packaging" id="packaging2" value="2"><label for="packaging2">★</label>
+<input type="radio" name="packaging" id="packaging1" value="1"><label for="packaging1">★</label>
 </div>
 <button onclick="next('service')">Next</button>
 </div>
@@ -123,11 +122,11 @@ button {
 <button class="back-btn" onclick="back('packaging')">&#8592;</button>
 <h3>Service</h3>
 <div class="stars">
-<input type="radio" name="service" value="5"><label>★</label>
-<input type="radio" name="service" value="4"><label>★</label>
-<input type="radio" name="service" value="3"><label>★</label>
-<input type="radio" name="service" value="2"><label>★</label>
-<input type="radio" name="service" value="1"><label>★</label>
+<input type="radio" name="service" id="service5" value="5"><label for="service5">★</label>
+<input type="radio" name="service" id="service4" value="4"><label for="service4">★</label>
+<input type="radio" name="service" id="service3" value="3"><label for="service3">★</label>
+<input type="radio" name="service" id="service2" value="2"><label for="service2">★</label>
+<input type="radio" name="service" id="service1" value="1"><label for="service1">★</label>
 </div>
 <button onclick="next('buyagain')">Next</button>
 </div>
@@ -137,11 +136,11 @@ button {
 <button class="back-btn" onclick="back('service')">&#8592;</button>
 <h3>Would you buy again?</h3>
 <div class="stars">
-<input type="radio" name="buyagain" value="5"><label>★</label>
-<input type="radio" name="buyagain" value="4"><label>★</label>
-<input type="radio" name="buyagain" value="3"><label>★</label>
-<input type="radio" name="buyagain" value="2"><label>★</label>
-<input type="radio" name="buyagain" value="1"><label>★</label>
+<input type="radio" name="buyagain" id="buyagain5" value="5"><label for="buyagain5">★</label>
+<input type="radio" name="buyagain" id="buyagain4" value="4"><label for="buyagain4">★</label>
+<input type="radio" name="buyagain" id="buyagain3" value="3"><label for="buyagain3">★</label>
+<input type="radio" name="buyagain" id="buyagain2" value="2"><label for="buyagain2">★</label>
+<input type="radio" name="buyagain" id="buyagain1" value="1"><label for="buyagain1">★</label>
 </div>
 <button onclick="next('comments')">Next</button>
 </div>
@@ -150,7 +149,7 @@ button {
 <div class="box hidden" id="comments">
 <button class="back-btn" onclick="back('buyagain')">&#8592;</button>
 <h3>Comments</h3>
-<textarea id="text" style="width:100%;height:80px;"></textarea>
+<textarea id="text" placeholder="Write something..."></textarea>
 <button onclick="next('confirm')">Submit</button>
 </div>
 
@@ -187,7 +186,6 @@ function submitFinal() {
             return;
         }
     }
-
     next("done");
 }
 </script>
