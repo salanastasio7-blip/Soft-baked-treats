@@ -11,25 +11,31 @@ body {
     background-size: cover;
     background-position: center;
     margin: 0;
-    padding: 0;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center; /* centers vertically */
-    align-items: center;     /* centers horizontally */
-    height: 100vh;           /* full viewport height */
+    justify-content: center;
+    align-items: center;
 }
-h1 { color: white; margin-bottom: 20px; text-align: center; }
+.container {
+    text-align: center;
+}
 .section {
     display: none;
     width: 90%;
     max-width: 400px;
     background: rgba(255,255,255,0.85);
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
-    text-align: center;      /* center text and stars */
+    margin: 10px auto;
+    position: relative;
 }
 .section.active { display: block; }
-.stars { display: flex; flex-direction: row-reverse; justify-content: center; margin-bottom: 10px; }
+.stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    margin-bottom: 10px;
+}
 .stars input { display: none; }
 .stars label { font-size: 30px; color: #ccc; cursor: pointer; transition: 0.2s; }
 .stars input:checked ~ label,
@@ -47,73 +53,99 @@ button {
     cursor: pointer;
 }
 button:hover { background: #222; }
+.back-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #888;
+    font-size: 14px;
+    padding: 5px 10px;
+}
+.back-btn:hover { background: #555; }
 </style>
 </head>
 <body>
 
-<h1>Rate My Bakery</h1>
+<div class="container">
+    <h1>Rate My Bakery</h1>
 
-<div class="section active" id="taste">
-    <h3>Taste</h3>
-    <div class="stars">
-        <input type="radio" name="taste" id="taste5" value="5"><label for="taste5">&#9733;</label>
-        <input type="radio" name="taste" id="taste4" value="4"><label for="taste4">&#9733;</label>
-        <input type="radio" name="taste" id="taste3" value="3"><label for="taste3">&#9733;</label>
-        <input type="radio" name="taste" id="taste2" value="2"><label for="taste2">&#9733;</label>
-        <input type="radio" name="taste" id="taste1" value="1"><label for="taste1">&#9733;</label>
+    <div class="section active" id="taste">
+        <button class="back-btn" onclick="goBack('taste')" style="display:none;">Back</button>
+        <h3>Taste</h3>
+        <div class="stars">
+            <input type="radio" name="taste" id="taste5" value="5"><label for="taste5">&#9733;</label>
+            <input type="radio" name="taste" id="taste4" value="4"><label for="taste4">&#9733;</label>
+            <input type="radio" name="taste" id="taste3" value="3"><label for="taste3">&#9733;</label>
+            <input type="radio" name="taste" id="taste2" value="2"><label for="taste2">&#9733;</label>
+            <input type="radio" name="taste" id="taste1" value="1"><label for="taste1">&#9733;</label>
+        </div>
+        <button onclick="next('taste','packaging')">Next</button>
     </div>
-    <button onclick="next('taste','packaging')">Next</button>
-</div>
 
-<div class="section" id="packaging">
-    <h3>Packaging</h3>
-    <div class="stars">
-        <input type="radio" name="packaging" id="packaging5" value="5"><label for="packaging5">&#9733;</label>
-        <input type="radio" name="packaging" id="packaging4" value="4"><label for="packaging4">&#9733;</label>
-        <input type="radio" name="packaging" id="packaging3" value="3"><label for="packaging3">&#9733;</label>
-        <input type="radio" name="packaging" id="packaging2" value="2"><label for="packaging2">&#9733;</label>
-        <input type="radio" name="packaging" id="packaging1" value="1"><label for="packaging1">&#9733;</label>
+    <div class="section" id="packaging">
+        <button class="back-btn" onclick="goBack('packaging')">Back</button>
+        <h3>Packaging</h3>
+        <div class="stars">
+            <input type="radio" name="packaging" id="packaging5" value="5"><label for="packaging5">&#9733;</label>
+            <input type="radio" name="packaging" id="packaging4" value="4"><label for="packaging4">&#9733;</label>
+            <input type="radio" name="packaging" id="packaging3" value="3"><label for="packaging3">&#9733;</label>
+            <input type="radio" name="packaging" id="packaging2" value="2"><label for="packaging2">&#9733;</label>
+            <input type="radio" name="packaging" id="packaging1" value="1"><label for="packaging1">&#9733;</label>
+        </div>
+        <button onclick="next('packaging','service')">Next</button>
     </div>
-    <button onclick="next('packaging','service')">Next</button>
-</div>
 
-<div class="section" id="service">
-    <h3>Service</h3>
-    <div class="stars">
-        <input type="radio" name="service" id="service5" value="5"><label for="service5">&#9733;</label>
-        <input type="radio" name="service" id="service4" value="4"><label for="service4">&#9733;</label>
-        <input type="radio" name="service" id="service3" value="3"><label for="service3">&#9733;</label>
-        <input type="radio" name="service" id="service2" value="2"><label for="service2">&#9733;</label>
-        <input type="radio" name="service" id="service1" value="1"><label for="service1">&#9733;</label>
+    <div class="section" id="service">
+        <button class="back-btn" onclick="goBack('service')">Back</button>
+        <h3>Service</h3>
+        <div class="stars">
+            <input type="radio" name="service" id="service5" value="5"><label for="service5">&#9733;</label>
+            <input type="radio" name="service" id="service4" value="4"><label for="service4">&#9733;</label>
+            <input type="radio" name="service" id="service3" value="3"><label for="service3">&#9733;</label>
+            <input type="radio" name="service" id="service2" value="2"><label for="service2">&#9733;</label>
+            <input type="radio" name="service" id="service1" value="1"><label for="service1">&#9733;</label>
+        </div>
+        <button onclick="next('service','buyagain')">Next</button>
     </div>
-    <button onclick="next('service','buyagain')">Next</button>
-</div>
 
-<div class="section" id="buyagain">
-    <h3>Would you buy again?</h3>
-    <div class="stars">
-        <input type="radio" name="buyagain" id="buyagain5" value="5"><label for="buyagain5">&#9733;</label>
-        <input type="radio" name="buyagain" id="buyagain4" value="4"><label for="buyagain4">&#9733;</label>
-        <input type="radio" name="buyagain" id="buyagain3" value="3"><label for="buyagain3">&#9733;</label>
-        <input type="radio" name="buyagain" id="buyagain2" value="2"><label for="buyagain2">&#9733;</label>
-        <input type="radio" name="buyagain" id="buyagain1" value="1"><label for="buyagain1">&#9733;</label>
+    <div class="section" id="buyagain">
+        <button class="back-btn" onclick="goBack('buyagain')">Back</button>
+        <h3>Would you buy again?</h3>
+        <div class="stars">
+            <input type="radio" name="buyagain" id="buyagain5" value="5"><label for="buyagain5">&#9733;</label>
+            <input type="radio" name="buyagain" id="buyagain4" value="4"><label for="buyagain4">&#9733;</label>
+            <input type="radio" name="buyagain" id="buyagain3" value="3"><label for="buyagain3">&#9733;</label>
+            <input type="radio" name="buyagain" id="buyagain2" value="2"><label for="buyagain2">&#9733;</label>
+            <input type="radio" name="buyagain" id="buyagain1" value="1"><label for="buyagain1">&#9733;</label>
+        </div>
+        <button onclick="next('buyagain','comments')">Next</button>
     </div>
-    <button onclick="next('buyagain','comments')">Next</button>
-</div>
 
-<div class="section" id="comments">
-    <h3>Comments (Optional)</h3>
-    <textarea id="comments" placeholder="Write something..."></textarea>
-    <button onclick="submitRatings()">Submit</button>
+    <div class="section" id="comments">
+        <button class="back-btn" onclick="goBack('comments')">Back</button>
+        <h3>Comments (Optional)</h3>
+        <textarea id="comments" placeholder="Write something..."></textarea>
+        <button onclick="submitRatings()">Submit</button>
+    </div>
 </div>
 
 <script>
-function next(current, nextId) {
+const order = ['taste','packaging','service','buyagain','comments'];
+
+function next(current,nextId){
     document.getElementById(current).classList.remove('active');
     document.getElementById(nextId).classList.add('active');
 }
 
-function submitRatings() {
+function goBack(current){
+    const index = order.indexOf(current);
+    if(index>0){
+        document.getElementById(current).classList.remove('active');
+        document.getElementById(order[index-1]).classList.add('active');
+    }
+}
+
+function submitRatings(){
     const categories = ["taste","packaging","service","buyagain"];
     let data = {};
     let allRated = true;
@@ -124,9 +156,17 @@ function submitRatings() {
         else allRated=false;
     });
 
-    data.comments = document.getElementById("comments").value;
+    if(!allRated){
+        alert("Please rate all 4 categories!");
+        return;
+    }
 
-    if(!allRated){ alert("Please rate all 4 categories!"); return; }
+    // Confirm before submitting
+    if(!confirm("Are you sure you want to submit? Double check your ratings.")){
+        return;
+    }
+
+    data.comments = document.getElementById("comments").value;
 
     let existing = JSON.parse(localStorage.getItem("ratings")) || [];
     existing.push(data);
@@ -138,6 +178,8 @@ function submitRatings() {
         if(checked) checked.checked=false;
     });
     document.getElementById("comments").value = "";
+
+    alert("Thanks for your feedback!");
 }
 </script>
 
