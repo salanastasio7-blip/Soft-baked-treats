@@ -151,7 +151,20 @@ button {
 <button class="back-btn" onclick="back('buyagain')">&#8592;</button>
 <h3>Comments</h3>
 <textarea id="text" style="width:100%;height:80px;"></textarea>
-<button onclick="submitForm()">Submit</button>
+<button onclick="next('confirm')">Submit</button>
+</div>
+
+<!-- Confirm -->
+<div class="box hidden" id="confirm">
+<button class="back-btn" onclick="back('comments')">&#8592;</button>
+<h3>Are you sure?</h3>
+<p>Double check your ratings before submitting.</p>
+<button onclick="submitFinal()">Submit Final</button>
+</div>
+
+<!-- Success -->
+<div class="box hidden" id="done">
+<h3>Thanks for your feedback!</h3>
 </div>
 
 </div>
@@ -166,7 +179,7 @@ function back(id) {
     next(id);
 }
 
-function submitForm() {
+function submitFinal() {
     let cats = ["taste","packaging","service","buyagain"];
     for (let c of cats) {
         if (!document.querySelector(`input[name="${c}"]:checked`)) {
@@ -175,9 +188,7 @@ function submitForm() {
         }
     }
 
-    if (!confirm("Are you sure you want to submit?")) return;
-
-    alert("Thanks for your feedback!");
+    next("done");
 }
 </script>
 
