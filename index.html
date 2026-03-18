@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Soft baked treats</title>
+<title>Soft Baked Treats</title>
 
 <style>
 body {
@@ -42,6 +42,7 @@ h1 {
     flex-direction: row-reverse;
     justify-content: center;
     gap: 12px;
+    margin-bottom: 8px;
 }
 
 .stars input {
@@ -87,17 +88,13 @@ button:active {
     position: absolute;
     top: 10px;
     left: 10px;
-
     width: 28px;
     height: 28px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: rgba(255,255,255,0.9);
     border-radius: 8px;
-
     font-size: 28px;
     font-weight: 900;
     border: none;
@@ -117,86 +114,94 @@ textarea {
     border: 1px solid #ccc;
 }
 
-#warning {
+.warning {
     color: red;
-    margin-top: 10px;
+    font-size: 14px;
+    margin-top: 5px;
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
+<h1>Soft Baked Treats</h1>
 
-<h1>Rate My Bakery</h1>
-
-<div class="box" id="start">
-  <h3>Start rating?</h3>
-  <button onclick="next('taste')">Start</button>
-</div>
-
-<div class="box hidden" id="taste">
+<!-- Taste -->
+<div class="box" id="taste">
 <h3>Taste</h3>
 <div class="stars">
-<input type="radio" name="taste" id="t5"><label for="t5">★</label>
-<input type="radio" name="taste" id="t4"><label for="t4">★</label>
-<input type="radio" name="taste" id="t3"><label for="t3">★</label>
-<input type="radio" name="taste" id="t2"><label for="t2">★</label>
-<input type="radio" name="taste" id="t1"><label for="t1">★</label>
+<input type="radio" name="taste" id="t5" value="5"><label for="t5">★</label>
+<input type="radio" name="taste" id="t4" value="4"><label for="t4">★</label>
+<input type="radio" name="taste" id="t3" value="3"><label for="t3">★</label>
+<input type="radio" name="taste" id="t2" value="2"><label for="t2">★</label>
+<input type="radio" name="taste" id="t1" value="1"><label for="t1">★</label>
 </div>
+<div class="warning" id="warn-taste"></div>
+<button onclick="next('packaging')">Next</button>
 </div>
 
+<!-- Packaging -->
 <div class="box hidden" id="packaging">
 <button class="back-btn" onclick="back('taste')">⬅</button>
 <h3>Packaging</h3>
 <div class="stars">
-<input type="radio" name="packaging" id="p5"><label for="p5">★</label>
-<input type="radio" name="packaging" id="p4"><label for="p4">★</label>
-<input type="radio" name="packaging" id="p3"><label for="p3">★</label>
-<input type="radio" name="packaging" id="p2"><label for="p2">★</label>
-<input type="radio" name="packaging" id="p1"><label for="p1">★</label>
+<input type="radio" name="packaging" id="p5" value="5"><label for="p5">★</label>
+<input type="radio" name="packaging" id="p4" value="4"><label for="p4">★</label>
+<input type="radio" name="packaging" id="p3" value="3"><label for="p3">★</label>
+<input type="radio" name="packaging" id="p2" value="2"><label for="p2">★</label>
+<input type="radio" name="packaging" id="p1" value="1"><label for="p1">★</label>
 </div>
+<div class="warning" id="warn-packaging"></div>
+<button onclick="next('service')">Next</button>
 </div>
 
+<!-- Service -->
 <div class="box hidden" id="service">
 <button class="back-btn" onclick="back('packaging')">⬅</button>
 <h3>Service</h3>
 <div class="stars">
-<input type="radio" name="service" id="s5"><label for="s5">★</label>
-<input type="radio" name="service" id="s4"><label for="s4">★</label>
-<input type="radio" name="service" id="s3"><label for="s3">★</label>
-<input type="radio" name="service" id="s2"><label for="s2">★</label>
-<input type="radio" name="service" id="s1"><label for="s1">★</label>
+<input type="radio" name="service" id="s5" value="5"><label for="s5">★</label>
+<input type="radio" name="service" id="s4" value="4"><label for="s4">★</label>
+<input type="radio" name="service" id="s3" value="3"><label for="s3">★</label>
+<input type="radio" name="service" id="s2" value="2"><label for="s2">★</label>
+<input type="radio" name="service" id="s1" value="1"><label for="s1">★</label>
 </div>
+<div class="warning" id="warn-service"></div>
+<button onclick="next('buyagain')">Next</button>
 </div>
 
+<!-- Buy Again -->
 <div class="box hidden" id="buyagain">
 <button class="back-btn" onclick="back('service')">⬅</button>
-<h3>Buy again?</h3>
+<h3>Would you buy again?</h3>
 <div class="stars">
-<input type="radio" name="buyagain" id="b5"><label for="b5">★</label>
-<input type="radio" name="buyagain" id="b4"><label for="b4">★</label>
-<input type="radio" name="buyagain" id="b3"><label for="b3">★</label>
-<input type="radio" name="buyagain" id="b2"><label for="b2">★</label>
-<input type="radio" name="buyagain" id="b1"><label for="b1">★</label>
+<input type="radio" name="buyagain" id="b5" value="5"><label for="b5">★</label>
+<input type="radio" name="buyagain" id="b4" value="4"><label for="b4">★</label>
+<input type="radio" name="buyagain" id="b3" value="3"><label for="b3">★</label>
+<input type="radio" name="buyagain" id="b2" value="2"><label for="b2">★</label>
+<input type="radio" name="buyagain" id="b1" value="1"><label for="b1">★</label>
 </div>
+<div class="warning" id="warn-buyagain"></div>
+<button onclick="next('comments')">Next</button>
 </div>
 
+<!-- Comments -->
 <div class="box hidden" id="comments">
 <button class="back-btn" onclick="back('buyagain')">⬅</button>
 <h3>Comments</h3>
 <textarea></textarea>
-<button onclick="next('confirm')">Next</button>
+<button onclick="next('confirm')">Submit</button>
 </div>
 
+<!-- Confirm -->
 <div class="box hidden" id="confirm">
 <button class="back-btn" onclick="back('comments')">⬅</button>
 <h3>Confirm</h3>
-<p>Check your ratings</p>
 <div id="warning"></div>
 <button onclick="submitFinal()">Submit</button>
 </div>
 
+<!-- Done -->
 <div class="box hidden" id="done">
 <h3>Thanks!</h3>
 </div>
@@ -213,32 +218,37 @@ function back(id) {
     next(id);
 }
 
+// Show warning if rating 3 or lower
 document.querySelectorAll(".stars input").forEach(input => {
     input.addEventListener("change", () => {
-        const id = input.closest(".box").id;
-        if (id === "taste") next("packaging");
-        else if (id === "packaging") next("service");
-        else if (id === "service") next("buyagain");
-        else if (id === "buyagain") next("comments");
+        const box = input.closest(".box");
+        const warn = box.querySelector(".warning");
+        if (parseInt(input.value) <= 3) {
+            warn.textContent = "Hmm… that’s low! Are you sure?";
+        } else {
+            warn.textContent = "";
+        }
+
+        // Auto next
+        if (box.id === "taste") next("packaging");
+        else if (box.id === "packaging") next("service");
+        else if (box.id === "service") next("buyagain");
+        else if (box.id === "buyagain") next("comments");
     });
 });
 
 function submitFinal() {
     let cats = ["taste","packaging","service","buyagain"];
     let ok = true;
-
     cats.forEach(c => {
         if (!document.querySelector(`input[name="${c}"]:checked`)) ok = false;
     });
-
     if (!ok) {
-        document.getElementById("warning").textContent = "Rate all first!";
+        document.getElementById("warning").textContent = "Rate all categories first!";
         return;
     }
-
     next("done");
 }
 </script>
-
 </body>
 </html>
