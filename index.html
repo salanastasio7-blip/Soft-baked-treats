@@ -24,29 +24,30 @@ body {
 }
 
 .box {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px 25px;
+    border-radius: 16px;
     text-align: center;
     position: relative;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
 h1 {
     color: white;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    font-size: 32px;
 }
 
 .stars {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
+    gap: 10px;
 }
 
-.stars input { display: none; }
-
 .stars label {
-    font-size: 30px;
+    font-size: 40px;
     color: #ccc;
     cursor: pointer;
     transition: color 0.2s;
@@ -60,31 +61,53 @@ h1 {
 
 button {
     margin-top: 20px;
-    padding: 10px 20px;
+    padding: 14px 28px;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     background: black;
     color: white;
     cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #333;
 }
 
 .back-btn {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 12px;
+    left: 12px;
     background: none;
     border: none;
-    font-size: 36px;  /* bigger arrow */
-    font-weight: bold; /* thicker */
+    font-size: 40px;
+    font-weight: bold;
     cursor: pointer;
-    color: black;      /* arrow color */
+    color: black;
 }
-.hidden { display: none; }
 
-textarea { width: 100%; height: 80px; margin-top: 10px; padding: 8px; border-radius: 5px; border: 1px solid #ccc; }
+.hidden {
+    display: none;
+}
+
+textarea {
+    width: 100%;
+    min-height: 60px;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    margin-top: 10px;
+}
+
+#warning {
+    color: red;
+    margin-top: 10px;
+}
 </style>
 </head>
-
 <body>
 
 <div class="container">
@@ -166,13 +189,12 @@ textarea { width: 100%; height: 80px; margin-top: 10px; padding: 8px; border-rad
 <button class="back-btn" onclick="back('comments')">&#8592;</button>
 <h3>Are you sure?</h3>
 <p>Double check your ratings before submitting.</p>
-<div id="warning" style="color:red; margin-top:10px;"></div>
+<div id="warning"></div>
 <button onclick="submitFinal()">Submit Final</button>
 </div>
 
 <!-- Done -->
 <div class="box hidden" id="done">
-<button class="back-btn" onclick="back('confirm')">&#8592;</button>
 <h3>Thanks for your feedback!</h3>
 </div>
 
