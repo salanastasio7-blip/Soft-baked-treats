@@ -6,8 +6,9 @@
 <title>Soft Baked Treats</title>
 
 <style>
+/* General body */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     height: 100vh;
     display: flex;
@@ -18,31 +19,39 @@ body {
     background-position: center;
 }
 
+/* Container */
 .container {
-    width: 90%;
-    max-width: 400px;
+    width: 95%;
+    max-width: 420px;
 }
 
+/* Boxes */
 .box {
     background: rgba(255,255,255,0.95);
     padding: 30px;
-    border-radius: 18px;
+    border-radius: 20px;
     text-align: center;
     position: relative;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    transition: all 0.3s ease;
 }
 
+/* Title */
 h1 {
     color: white;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 36px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
 }
 
+/* Stars styling */
 .stars {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
     gap: 12px;
-    margin-bottom: 8px;
+    margin: 15px 0;
 }
 
 .stars input {
@@ -50,7 +59,7 @@ h1 {
 }
 
 .stars label {
-    font-size: 42px;
+    font-size: 48px;
     color: #ccc;
     cursor: pointer;
     transition: 0.2s;
@@ -62,44 +71,57 @@ h1 {
     color: gold;
 }
 
+/* Back arrow */
+.back-btn {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.9);
+    border-radius: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    color: black;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+/* Buttons */
 button {
     margin-top: 20px;
-    padding: 12px 22px;
+    padding: 14px 26px;
     border: none;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #000, #333);
+    border-radius: 16px;
+    background: linear-gradient(135deg, #222, #555);
     color: white;
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    transition: all 0.2s ease;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
 }
 
 button:hover {
     transform: translateY(-2px);
+    background: linear-gradient(135deg, #333, #666);
 }
 
 button:active {
     transform: scale(0.96);
 }
 
-.back-btn {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255,255,255,0.9);
-    border-radius: 8px;
-    font-size: 28px;
-    font-weight: 900;
-    border: none;
-    cursor: pointer;
-    color: black;
+/* Warning message under stars */
+.warning {
+    margin-top: 12px;
+    font-weight: bold;
+    color: #d32f2f;
+    font-size: 16px;
+    transition: all 0.3s ease;
 }
 
 .hidden {
@@ -108,26 +130,29 @@ button:active {
 
 textarea {
     width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 8px;
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 10px;
     border: 1px solid #ccc;
-}
-
-.warning {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
+    font-size: 16px;
 }
 </style>
 </head>
 
 <body>
+
 <div class="container">
+
 <h1>Soft Baked Treats</h1>
 
+<!-- Start -->
+<div class="box" id="start">
+  <h3>Start rating?</h3>
+  <button onclick="next('taste')">Start</button>
+</div>
+
 <!-- Taste -->
-<div class="box" id="taste">
+<div class="box hidden" id="taste">
 <h3>Taste</h3>
 <div class="stars">
 <input type="radio" name="taste" id="t5" value="5"><label for="t5">★</label>
@@ -136,8 +161,7 @@ textarea {
 <input type="radio" name="taste" id="t2" value="2"><label for="t2">★</label>
 <input type="radio" name="taste" id="t1" value="1"><label for="t1">★</label>
 </div>
-<div class="warning" id="warn-taste"></div>
-<button onclick="next('packaging')">Next</button>
+<div class="warning hidden" id="taste-warning">Hmm… this taste rating is low. Consider why it didn't meet your expectations.</div>
 </div>
 
 <!-- Packaging -->
@@ -151,8 +175,7 @@ textarea {
 <input type="radio" name="packaging" id="p2" value="2"><label for="p2">★</label>
 <input type="radio" name="packaging" id="p1" value="1"><label for="p1">★</label>
 </div>
-<div class="warning" id="warn-packaging"></div>
-<button onclick="next('service')">Next</button>
+<div class="warning hidden" id="packaging-warning">Packaging could be improved. Think about presentation or sturdiness.</div>
 </div>
 
 <!-- Service -->
@@ -166,14 +189,13 @@ textarea {
 <input type="radio" name="service" id="s2" value="2"><label for="s2">★</label>
 <input type="radio" name="service" id="s1" value="1"><label for="s1">★</label>
 </div>
-<div class="warning" id="warn-service"></div>
-<button onclick="next('buyagain')">Next</button>
+<div class="warning hidden" id="service-warning">Service rating is low. Could be slower or unfriendly.</div>
 </div>
 
 <!-- Buy Again -->
 <div class="box hidden" id="buyagain">
 <button class="back-btn" onclick="back('service')">⬅</button>
-<h3>Would you buy again?</h3>
+<h3>Buy again?</h3>
 <div class="stars">
 <input type="radio" name="buyagain" id="b5" value="5"><label for="b5">★</label>
 <input type="radio" name="buyagain" id="b4" value="4"><label for="b4">★</label>
@@ -181,55 +203,52 @@ textarea {
 <input type="radio" name="buyagain" id="b2" value="2"><label for="b2">★</label>
 <input type="radio" name="buyagain" id="b1" value="1"><label for="b1">★</label>
 </div>
-<div class="warning" id="warn-buyagain"></div>
-<button onclick="next('comments')">Next</button>
+<div class="warning hidden" id="buyagain-warning">Low likelihood to buy again. Think about value or appeal.</div>
 </div>
 
 <!-- Comments -->
 <div class="box hidden" id="comments">
 <button class="back-btn" onclick="back('buyagain')">⬅</button>
 <h3>Comments</h3>
-<textarea></textarea>
-<button onclick="next('confirm')">Submit</button>
+<textarea placeholder="Write something..."></textarea>
+<button onclick="next('confirm')">Next</button>
 </div>
 
 <!-- Confirm -->
 <div class="box hidden" id="confirm">
 <button class="back-btn" onclick="back('comments')">⬅</button>
 <h3>Confirm</h3>
+<p>Check your ratings before submitting</p>
 <div id="warning"></div>
 <button onclick="submitFinal()">Submit</button>
 </div>
 
 <!-- Done -->
 <div class="box hidden" id="done">
-<h3>Thanks!</h3>
+<h3>Thanks for your feedback!</h3>
 </div>
 
 </div>
 
 <script>
+// Navigation
 function next(id) {
     document.querySelectorAll(".box").forEach(b => b.classList.add("hidden"));
     document.getElementById(id).classList.remove("hidden");
 }
-
 function back(id) {
     next(id);
 }
 
-// Show warning if rating 3 or lower
+// Auto-show warning if ≤3
 document.querySelectorAll(".stars input").forEach(input => {
     input.addEventListener("change", () => {
         const box = input.closest(".box");
-        const warn = box.querySelector(".warning");
-        if (parseInt(input.value) <= 3) {
-            warn.textContent = "Hmm… that’s low! Are you sure?";
-        } else {
-            warn.textContent = "";
-        }
+        const warning = box.querySelector(".warning");
+        if (input.value <= 3) warning.classList.remove("hidden");
+        else warning.classList.add("hidden");
 
-        // Auto next
+        // Auto-next
         if (box.id === "taste") next("packaging");
         else if (box.id === "packaging") next("service");
         else if (box.id === "service") next("buyagain");
@@ -237,8 +256,9 @@ document.querySelectorAll(".stars input").forEach(input => {
     });
 });
 
+// Final submit
 function submitFinal() {
-    let cats = ["taste","packaging","service","buyagain"];
+    const cats = ["taste","packaging","service","buyagain"];
     let ok = true;
     cats.forEach(c => {
         if (!document.querySelector(`input[name="${c}"]:checked`)) ok = false;
@@ -250,5 +270,6 @@ function submitFinal() {
     next("done");
 }
 </script>
+
 </body>
 </html>
